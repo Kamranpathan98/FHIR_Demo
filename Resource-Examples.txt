@@ -364,3 +364,48 @@
     }
   ]
 }
+
+
+-- Care Plan Example
+
+{
+  "resourceType": "CarePlan",
+  "id": "careplan-diabetes-123",
+  "status": "active",
+  "intent": "plan",
+  "title": "Diabetes Monitoring Care Plan",
+  "subject": {
+    "reference": "Patient/123"
+  },
+  "basedOn": [
+    {
+      "reference": "PlanDefinition/diabetes-plan"
+    }
+  ],
+  "period": {
+    "start": "2025-02-10"
+  },
+  "goal": [
+    {
+      "reference": "Goal/glucose-control"
+    }
+  ],
+  "activity": [
+    {
+      "detail": {
+        "kind": "ServiceRequest",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4548-4",
+              "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+            }
+          ]
+        },
+        "status": "not-started",
+        "description": "Order HbA1c test"
+      }
+    }
+  ]
+}
