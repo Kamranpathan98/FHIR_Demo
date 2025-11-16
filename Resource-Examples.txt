@@ -165,3 +165,62 @@
     }
   ]
 }
+
+-- Complete Condition Example (Interview-ready)
+
+{
+  "resourceType": "Condition",
+  "id": "cond-2001",
+
+  "clinicalStatus": {
+    "coding": [{
+      "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+      "code": "active"
+    }]
+  },
+
+  "verificationStatus": {
+    "coding": [{
+      "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+      "code": "confirmed"
+    }]
+  },
+
+  "category": [{
+    "coding": [{
+      "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+      "code": "encounter-diagnosis",
+      "display": "Encounter Diagnosis"
+    }]
+  }],
+
+  "code": {
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "44054006",
+      "display": "Diabetes mellitus type 2"
+    }]
+  },
+
+  "subject": {
+    "reference": "Patient/12345"
+  },
+
+  "encounter": {
+    "reference": "Encounter/enc-2001"
+  },
+
+  "onsetDateTime": "2022-01-22",
+  "recordedDate": "2022-01-25",
+
+  "extension": [
+    {
+      "url": "http://example.com/fhir/StructureDefinition/severityScore",
+      "valueInteger": 5
+    },
+    {
+      "url": "http://example.com/fhir/StructureDefinition/conditionNotes",
+      "valueString": "Patient requires lifestyle modifications."
+    }
+  ]
+}
