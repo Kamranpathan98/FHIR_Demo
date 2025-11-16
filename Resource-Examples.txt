@@ -66,6 +66,55 @@
   ]
 }
 
+-- Complete Practitioner Example (Interview-ready)
+
+{
+  "resourceType": "Practitioner",
+  "id": "doc-101",
+
+  "identifier": [{
+    "system": "http://mciindia.org/doctor-license",
+    "value": "MCI-20230012"
+  }],
+
+  "name": [{
+    "family": "Rao",
+    "given": ["Sameer"]
+  }],
+
+  "telecom": [
+    { "system": "phone", "value": "+91-9001234567" },
+    { "system": "email", "value": "sameer.rao@hospital.com" }
+  ],
+
+  "address": [{
+    "line": ["OPD Building, Room 12"],
+    "city": "Pune",
+    "state": "MH",
+    "postalCode": "411001"
+  }],
+
+  "qualification": [{
+    "code": {
+      "coding": [{
+        "system": "http://terminology.hl7.org/CodeSystem/v2-0360",
+        "code": "MBBS",
+        "display": "Bachelor of Medicine, Bachelor of Surgery"
+      }]
+    }
+  }],
+
+  "extension": [
+    {
+      "url": "http://example.com/fhir/StructureDefinition/doctorRating",
+      "valueDecimal": 4.8
+    },
+    {
+      "url": "http://example.com/fhir/StructureDefinition/experienceYears",
+      "valueInteger": 10
+    }
+  ]
+}
 
 -- Complete Observation (with custom fields)
 
