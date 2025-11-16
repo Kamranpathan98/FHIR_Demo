@@ -273,3 +273,59 @@
     }
   ]
 }
+
+-- PlanDefinition Complete Example
+{
+  "resourceType": "PlanDefinition",
+  "id": "diabetes-monitoring-plan",
+  "title": "Diabetes Monitoring Plan",
+  "status": "active",
+  "subject": {
+    "reference": "Patient/123"
+  },
+  "goal": [
+    {
+      "description": {
+        "text": "Maintain good glucose control"
+      }
+    }
+  ],
+  "action": [
+    {
+      "title": "Order Fasting Blood Glucose Test",
+      "description": "Collect and analyze fasting plasma glucose",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "1558-6",
+            "display": "Glucose [Mass/volume] in Serum or Plasma"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Order HbA1c Test",
+      "description": "Glycated Hemoglobin measurement",
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "4548-4",
+            "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Schedule Follow-up Encounter",
+      "timingTiming": {
+        "repeat": {
+          "frequency": 1,
+          "period": 30,
+          "periodUnit": "d"
+        }
+      }
+    }
+  ]
+}
