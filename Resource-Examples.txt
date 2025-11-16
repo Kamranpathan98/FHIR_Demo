@@ -329,3 +329,38 @@
     }
   ]
 }
+
+--Simple ActivityDefinition JSON Example
+
+{
+  "resourceType": "ActivityDefinition",
+  "id": "hba1c-order",
+  "status": "active",
+  "kind": "ServiceRequest",
+  "name": "OrderHbA1c",
+  "description": "Order an HbA1c test for diabetes monitoring",
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "4548-4",
+        "display": "Hemoglobin A1c/Hemoglobin.total in Blood"
+      }
+    ]
+  }
+}
+
+--Now — PlanDefinition using ActivityDefinition
+
+{
+  "resourceType": "PlanDefinition",
+  "id": "diabetes-plan",
+  "status": "active",
+  "title": "Diabetes Monitoring Plan",
+  "action": [
+    {
+      "title": "Order HbA1c Test",
+      "definitionCanonical": "ActivityDefinition/hba1c-order"
+    }
+  ]
+}
