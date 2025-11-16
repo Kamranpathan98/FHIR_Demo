@@ -1,0 +1,167 @@
+-- -- Complete Patient (with custom fields)
+
+{
+  "resourceType": "Patient",
+  "id": "12345",
+  "identifier": [
+    {
+      "system": "http://hospital.com/mrn",
+      "value": "MRN12345"
+    }
+  ],
+  "name": [
+    {
+      "family": "Pathan",
+      "given": ["Kamran"]
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1999-05-21",
+  "extension": [
+    {
+      "url": "http://example.com/fhir/StructureDefinition/patient-aadhaar",
+      "valueString": "9876-5432-1234"
+    },
+    {
+      "url": "http://example.com/fhir/StructureDefinition/marital-status-reason",
+      "valueString": "Separated due to relocation"
+    },
+    {
+      "url": "http://example.com/fhir/StructureDefinition/is-smoker",
+      "valueBoolean": true
+    },
+    {
+      "url": "http://example.com/fhir/StructureDefinition/patient-rating",
+      "valueInteger": 5
+    },
+    {
+      "url": "http://example.com/fhir/StructureDefinition/family-income",
+      "extension": [
+        {
+          "url": "amount",
+          "valueDecimal": 50000
+        },
+        {
+          "url": "currency",
+          "valueCode": "INR"
+        }
+      ]
+    },
+    {
+      "url": "http://example.com/fhir/StructureDefinition/first-visit-date",
+      "valueDate": "2023-01-01"
+    },
+    {
+      "url": "http://example.com/fhir/StructureDefinition/education-level",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://example.com/education-codes",
+            "code": "GRAD",
+            "display": "Graduate"
+          }
+        ]
+      }
+    }
+  ]
+}
+
+
+-- Complete Observation (with custom fields)
+
+{
+  "resourceType": "Observation",
+  "id": "obs-2001",
+  "status": "final",
+  "code": {
+    "coding": [{
+      "system": "http://loinc.org",
+      "code": "8480-6",
+      "display": "Systolic blood pressure"
+    }]
+  },
+  "subject": {
+    "reference": "Patient/12345"
+  },
+  "encounter": {
+    "reference": "Encounter/enc-1001"
+  },
+  "effectiveDateTime": "2024-02-01T10:00:00Z",
+
+  "valueQuantity": {
+    "value": 120,
+    "unit": "mmHg",
+    "system": "http://unitsofmeasure.org",
+    "code": "mm[Hg]"
+  },
+
+  "extension": [
+    {
+      "url": "http://example.com/fhir/StructureDefinition/labTechnicianName",
+      "valueString": "Sameer Khan"
+    },
+    {
+      "url": "http://example.com/fhir/StructureDefinition/locationCoordinates",
+      "extension": [
+        { "url": "latitude", "valueDecimal": 18.5204 },
+        { "url": "longitude", "valueDecimal": 73.8567 }
+      ]
+    }
+  ]
+}
+
+-- Complete Encounter (Production-level)
+
+{
+  "resourceType": "Encounter",
+  "id": "enc-2001",
+  "status": "finished",
+
+  "class": {
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "code": "AMB",
+    "display": "Outpatient"
+  },
+
+  "subject": {
+    "reference": "Patient/12345"
+  },
+
+  "period": {
+    "start": "2024-02-01T09:00:00Z",
+    "end": "2024-02-01T09:25:00Z"
+  },
+
+  "reasonCode": [{
+    "coding": [{
+      "system": "http://snomed.info/sct",
+      "code": "162397003",
+      "display": "General medical examination"
+    }]
+  }],
+
+  "participant": [{
+    "individual": {
+      "reference": "Practitioner/doc-101",
+      "display": "Dr. Sameer Rao"
+    }
+  }],
+
+  "location": [{
+    "location": {
+      "reference": "Location/loc-22",
+      "display": "OPD Room 10"
+    }
+  }],
+
+  "extension": [
+    {
+      "url": "http://example.com/fhir/StructureDefinition/queueNumber",
+      "valueInteger": 12
+    },
+    {
+      "url": "http://example.com/fhir/StructureDefinition/visitNotes",
+      "valueString": "Patient reported high BP for 2 days."
+    }
+  ]
+}
