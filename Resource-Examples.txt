@@ -477,11 +477,13 @@ important fields are status, class, subject, participant, period, reasonCode
   },
   "reasonCode":[
     {
-      'coding':{
+      'coding':[
+        {
         "system": "http://snomed.info/sct",
         code: "65363002",
         display:"fever"
       }
+      ]
     }
   ]
 }
