@@ -409,3 +409,40 @@
     }
   ]
 }
+
+--------------------------------------- Practise---------------------------------------------------
+
+1. Create Patient resource
+
+{
+  "resourceType": "Patient",
+  "id": "12345",
+  "identifier": [
+    {
+      "system":"http://hospital.org/mrn",
+      "value":"12345"
+    }
+  ],
+  name: [
+    {
+      "family": "Pathan",
+      "given": ["Kamran"]
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1998-04-07",
+  "telecom": [
+    { "system": "phone", "value": "+91-9001234567" },
+    { "system": "email", "value": "sameer.rao@hospital.com" }
+  ],
+
+  "address": [{
+    "line": ["OPD Building, Room 12"],
+    "city": "Pune",
+    "state": "MH",
+    "postalCode": "411001"
+  }],
+}
+
+important fields in Patient resource :- 
+Name, Dob, gender, address, telecom, identifier(when map local system values like mrn)
