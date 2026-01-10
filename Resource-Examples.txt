@@ -485,3 +485,81 @@ Encounter is modeled as a separate resource in FHIR because a patient can have m
 independent clinical interactions over time. By separating Encounter from Patient, 
 FHIR allows each visit to have its own context, timeline, participants, location, and linked clinical data. 
 This enables precise querying, auditing, and reconstruction of clinical workflows without overloading the Patient resource.
+-----Now Encounter
+
+
+important fields are status, class, subject, participant, period, reasonCode
+
+{
+  "resourceType": "Encounter",
+  "id":'enc-001',
+  "status": 'finished',
+  class: {
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "display": "Outpatient",
+    "code":"outpatient"
+  },
+  "subject":{
+    "reference":"Patient/123"
+  },
+  participant: [
+    {
+      "individual": {
+        "reference":"Practitioner/doc-123"
+      }
+    }
+  ],
+  period:{
+    "start": "2025-10-01T09:00:00+05:30",
+    "end": "2025-10-01T10:00:00+05:30",
+  },
+  "reasonCode":[
+    {
+      'coding':[
+        {
+        "system": "http://snomed.info/sct",
+        code: "65363002",
+        display:"fever"
+      }
+      ]
+    }
+  ]
+}
+
+--------- Observation
+
+{
+  'resourceType': 'Observation',
+  'id':'ob-0001',
+  'status':'final',
+  'category':[
+    {
+      'conding': [
+      {
+        'system': 'http://terminology.hl7.org/CodeSystem/observaton-category',
+        'code':"vital-sign",
+        'display': "Vital Signs"
+      }
+    ]
+    }
+  ],
+  'code':{
+    'coding':[
+      {
+        "system": 'http://loinc.org',
+        'code':'8310-5',
+        'display': 'Body Temperature'
+      }
+    ]
+  },
+  'subject': {
+    'reference': "Patient/124"
+  },
+  valueQuantity:{
+    'value': 101.5,
+    'code': 'degF",
+    'system': 'http://unitsofmeasure.org',
+    'unit': "degF"
+  },
+  'effectiveDateTime': "2025-11-18T09:15:00+05:30",
+}
