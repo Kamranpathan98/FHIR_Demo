@@ -563,3 +563,43 @@ important fields are status, class, subject, participant, period, reasonCode
   },
   'effectiveDateTime': "2025-11-18T09:15:00+05:30",
 }
+
+
+--------------------------------------------
+
+{
+  "resourceType": "Observation",
+  "id": "obs-001",
+  "status": "final",
+  "code": {
+    "coding": [{
+      "system": "http://loinc.org",
+      "code": "8480-6",
+      "display": "Systolic blood pressure"
+    }]
+  },
+  "subject": {
+    "reference": "Patient/12345"
+  },
+  "encounter": {
+    "reference": "Encounter/enc-001"
+  },
+  "effectiveDateTime": "2026-01-10T09:00:00Z",
+  "valueQuantity": {
+    "value":120,
+    "unit": "mmHg",
+    "system": "http://unitsofmeasure.org",
+    "code": "mmHg"
+  }
+}
+
+Why is it important that Observation links to both Patient and Encounter?
+What problem would you face if Encounter was missing?
+
+We need to link Observation to both Patient and Encounter because linking Patient doctor will understand
+the test are done for which patient and linking ecounter will actually provide description for what patient was at hospital for
+
+
+Observation links to Patient to identify who the data belongs to, and links to Encounter to capture the clinical context in which the data was collected. 
+Without Encounter, we lose the ability to reconstruct visit-specific workflows, timelines, and clinical reasoning. 
+This makes auditing, CDS, and longitudinal analysis unreliable.
