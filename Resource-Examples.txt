@@ -603,3 +603,62 @@ the test are done for which patient and linking ecounter will actually provide d
 Observation links to Patient to identify who the data belongs to, and links to Encounter to capture the clinical context in which the data was collected. 
 Without Encounter, we lose the ability to reconstruct visit-specific workflows, timelines, and clinical reasoning. 
 This makes auditing, CDS, and longitudinal analysis unreliable.
+
+----------------------------------- Questionare
+
+Create:
+
+1. A Questionnaire with:
+ linkId: 1, text: "Do you have chest pain?", type: boolean
+linkId: 2, text: "Since when?", type: string
+
+{
+  "resourceType": "Questionnaire",
+  "id": "questionnaire-12,
+  "status": "active",
+  "title": "Chest Pain Questionnaire",
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Do you have chest pain?",
+      "type": "boolean"
+    },
+    {
+      "linkId": "2",
+      "text": "Since when?",
+      "type": "string"
+    }
+  ]
+}
+
+{
+  "resourceType": "QuestionnaireResponse",
+  "id": "questionnaire-response-12",
+  "status": "completed",
+  "subject": {
+    "reference": "Patient/12345"
+  },
+  "encounter": {
+    "reference": "Encounter/enc-001"
+  },
+  "item": [
+    {
+      "linkId": "1",
+      "answer": {
+      "valueBoolean": true
+      }
+    },
+    {
+      "linkId": "2",
+      "answer": {
+        "valueString": "2 hours"
+      }
+    }
+  ]
+}
+=> Keeping Questionare and QuestionnaireResponse separate make it very flexible and reusable. Same questionnaire can be used
+across the system for every patient, and separate response help in differentiate each patient response
+
+FHIR separates Questionnaire and QuestionnaireResponse to decouple form definition from form data. 
+This allows the same questionnaire to be reused across patients, encounters, and systems, while each response 
+remains patient- and context-specific. This design enables interoperability, versioning, and workflow automation.
