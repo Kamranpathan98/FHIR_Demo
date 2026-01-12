@@ -662,3 +662,38 @@ across the system for every patient, and separate response help in differentiate
 FHIR separates Questionnaire and QuestionnaireResponse to decouple form definition from form data. 
 This allows the same questionnaire to be reused across patients, encounters, and systems, while each response 
 remains patient- and context-specific. This design enables interoperability, versioning, and workflow automation.
+
+------------------------------------------------------------------------------------------------------------------------
+
+{
+  "resourceType": "ActivityDefinition",
+  "id": "ad-ecg",
+  "status": "active",
+  "kind": "ServiceRequest",
+  "code": {
+    "coding": {
+      "system": "http://loinc.org",
+      "code":  "",
+      "display": "ECG"
+    }
+  },
+  description: "Order ECG"
+}
+
+{
+  "resourceType": "PlanDefinition",
+  "id": "plan-ecg",
+  "status": "active",
+  "title": "ECG Plan",
+  "action": [
+    {
+      "title": "Order ECG",
+      "definitionCanonical": "ActivityDefinition/ad-ecg"
+    }
+  ]
+}
+
+When doc answer the question then system check the plan definition and then execute the task under it
+
+In a real system, QuestionnaireResponse provides the clinical input, a CDS engine evaluates it against rules, 
+triggers the appropriate PlanDefinition, and then instantiates actions from ActivityDefinition as executable tasks such as ServiceRequests or Tasks.
